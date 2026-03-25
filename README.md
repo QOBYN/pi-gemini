@@ -39,14 +39,14 @@ ADMIN_KEY=your-admin-password
 
 DEFAULT_MODEL=gemini-2.0-flash
 ```
-GOOGLE_CLIENT_SECRET get from
-```
-echo "R09DU1BYLTR1SGdNUG0tMW83U2stZ2VWNkN1NWNsWEZzeGw=" | base64 -d
-```
+
 
 > **Lấy `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` ở đâu?**
+
 GOOGLE_CLIENT_ID=681255809395-oo8ft2oprdrnp9e3aqf6av3hmdib135j.apps.googleusercontent.com
+
 GOOGLE_CLIENT_SECRET=<decoded_value>
+
 Chạy trong terminal để decode value
 ```
 echo "R09DU1BYLTR1SGdNUG0tMW83U2stZ2VWNkN1NWNsWEZzeGw=" | base64 -d
