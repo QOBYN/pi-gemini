@@ -1,0 +1,8 @@
+node_modules/
+dist/
+release/
+*.tar.gz
+.env
+src/services/keys.json
+data/usage.db
+auth.json

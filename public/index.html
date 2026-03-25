@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>pi-gemini</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen flex items-center justify-center">
+  <div class="text-center max-w-lg px-6">
+    <div class="flex justify-center mb-6">
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="64" height="64" rx="16" fill="#0f2a1a"/>
+        <path d="M18 32l8-10v6h20v8H26v6l-8-10z" fill="#34d399"/>
+        <circle cx="44" cy="20" r="4" fill="#4ade80"/>
+      </svg>
+    </div>
+    <h1 class="text-3xl font-bold mb-2">pi-gemini</h1>
+    <p class="text-gray-400 mb-6">Gemini API proxy with key management</p>
+    <div id="status" class="inline-flex items-center gap-2 bg-gray-900 border border-gray-800 rounded-full px-4 py-2 text-sm">
+      <span class="w-2 h-2 rounded-full bg-gray-500" id="status-dot"></span>
+      <span id="status-text">Checking...</span>
+    </div>
+    <div class="mt-8">
+      <a href="/admin" class="text-green-400 hover:text-green-300 text-sm underline underline-offset-4">Manage API Keys →</a>
+    </div>
+    <div class="mt-8 bg-gray-900 border border-gray-800 rounded-xl p-4 text-left text-sm">
+      <p class="text-gray-400 mb-2 font-medium">Gemini CLI usage:</p>
+      <pre class="text-green-300 font-mono text-xs overflow-x-auto"><code id="cli-example"></code></pre>
+    </div>
+  </div>
+  <script>
+    const base = window.location.origin;
+    document.getElementById('cli-example').textContent =
+      `export GEMINI_API_KEY=sk-your-pi-gemini-key\nexport GEMINI_API_BASE_URL=${base}\ngemini`;
+
+    fetch('/health')
+      .then(r => r.json())
+      .then(() => {
+        document.getElementById('status-dot').className = 'w-2 h-2 rounded-full bg-green-400';
+        document.getElementById('status-text').textContent = 'Server is running';
+      })
+      .catch(() => {
+        document.getElementById('status-dot').className = 'w-2 h-2 rounded-full bg-red-400';
+        document.getElementById('status-text').textContent = 'Server unreachable';
+      });
+  </script>
+</body>
+</html>
